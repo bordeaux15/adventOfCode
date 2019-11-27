@@ -3,10 +3,10 @@
 import sys
 import os
 
-inputFile = sys.argv[1]
-frequency = 0;
-frequencyLoop = 0;
-frequencyDuplicate = 0;
+inputFile = "puzzle1_input.txt"
+frequency = 0
+frequencyLoop = 0
+frequencyDuplicate = 0
 frequencyAdjustments = []
 frequencyList = []
 
