@@ -27,9 +27,7 @@ with open(inputFile) as inFile:
             newFuel = calculateFuelByMass(moduleFuel)
             if (newFuel > 0):
                 totalFuelRequirement += newFuel
-                moduleFuel = newFuel
-            else:
-                break
+            moduleFuel = newFuel
 
 print("Total fuel required is {}".format(totalFuelRequirement))
 
