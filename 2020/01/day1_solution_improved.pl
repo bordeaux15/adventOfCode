@@ -1,9 +1,9 @@
-#!/usr/bin/env/perl
+#!/usr/local/bin/perl
 
-use strict;
-use warnings;
+#use strict;
+#use warnings;
 
-use lib qw (/home/mborto/perl5/lib/perl5/);
+#use lib qw (/home/mborto/perl5/lib/perl5/);
 use Algorithm::Combinatorics qw(combinations);
 use Getopt::Std;
 
