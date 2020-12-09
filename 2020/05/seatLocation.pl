@@ -8,8 +8,9 @@ use Data::Dumper;
 my $rowNumber;
 my $aisleNumber;
 my $seatId;
+my @allSeats;
 my $maxSeatId = 0;
-my $minSeatId = 0;
+my $minSeatId = 1000;
 
 #open (INPUT, "testInput.txt") || die "Can't open testInput.txt";
 open (INPUT, "puzzleInput.txt") || die "Can't open puzzleInput.txt";
@@ -22,6 +23,8 @@ while (my $line = <INPUT>) {
     $aisleNumber = find_location($aisleId, 7, 0);
     
     $seatId = $rowNumber * 8 + $aisleNumber;
+    push (@allSeats, $seatId);
+
     if ($seatId < $minSeatId) {
         $minSeatId = $seatId ;
     }
@@ -31,6 +34,12 @@ while (my $line = <INPUT>) {
 }
 print "Max Seat Id: $maxSeatId\n";
 print "Min Seat Id: $minSeatId\n";
+
+for my $seatCheck ($minSeatId .. $maxSeatId) {
+    if (!grep {$seatCheck eq $_} @allSeats) {
+        print "Seat ID is mine: $seatCheck\n";
+    }
+}
 
 exit (0);
 
