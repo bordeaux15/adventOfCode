@@ -10,23 +10,37 @@ inputFile = relPath + "puzzle_input.txt"
 
 def main():
     duplicates = []
+    groupsOfThree = []
     sum = 0
+    sum2 = 0
     if not os.path.isfile(inputFile):
         print("Input File {} does not exist. Exiting...".format(inputFile))
         sys.exit()
 
-    with open(inputFile) as inFile:
-        for line in inFile:
-            line.strip()
-            midpoint = int((len(line)-1)/2)
-            c1 = line[slice(0, midpoint)]
-            c2 = line[slice(midpoint, len(line)-1)]
-            duplicates.append(findMatch(c1,c2))
+    inFile = open(inputFile, 'r')
+    lines = inFile.read().splitlines()
+    inFile.close()
+    
+    for line in lines:
+        lineCount = 0
 
-        for i in duplicates:
-            sum += priority(i)
+        groupsOfThree.append(set(line))
+        midpoint = int((len(line))/2)
+        c1 = line[slice(0, midpoint)]
+        c2 = line[slice(midpoint, len(line))]
+        duplicates.append(findMatch(c1,c2))
 
-        print(sum)
+    for i in duplicates:
+        sum += priority(i)
+
+    print("Part 1 answer: " + str(sum))
+
+    for i in range(0, len(groupsOfThree), 3):
+        shared = (groupsOfThree[i].intersection(groupsOfThree[i+1], groupsOfThree[i+2]))
+        sum2 += priority("".join(shared))
+    
+    print("Part 2 answer: " + str(sum2))
+
 
 
 def findMatch(str1, str2):
